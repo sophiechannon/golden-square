@@ -2,20 +2,26 @@
 
 ## 1. Describe the Problem
 
-_Put or write the user story here. Add any clarifying notes you might have._
+As a user
+So that I can manage my time
+I want to see an estimate of reading time for a text, assuming that I can read 200 words a minute.
 
 ## 2. Design the Method Signature
 
-_Include the name of the method, its parameters, return value, and side effects._
+Name of the method
+
+Parameters
+Return value
+Side effects
 
 ```ruby
 # EXAMPLE
 
-# `extract_upper` extracts uppercase words from a list of words
-uppercase_words = extract_uppercase(mixed_words)
+# `estimate_reading_time` determines time it will take to read text
+reading_time = estimate_reading_time(text)
 
-mixed_words: a string (e.g. "hello WORLD")
-uppercase_words: a list of strings (e.g. ["WORLD"])
+text: a string (e.g. "hello world")
+reading_time: "The number of minutes it will take to read the given text rounded up to the nearest minute."
 
 # The method doesn't print anything or have any other side-effects
 ```
@@ -27,13 +33,11 @@ _Make a list of examples of what the method will take and return._
 ```ruby
 # EXAMPLE
 
-extract_uppercase("hello WORLD") => ["WORLD"]
-extract_uppercase("HELLO WORLD") => ["HELLO", "WORLD"]
-extract_uppercase("hello world") => []
-extract_uppercase("hello WoRLD") => []
-extract_uppercase("hello WORLD!") => ["WORLD"]
-extract_uppercase("") => []
-extract_uppercase(nil) throws an error
+#is this correct amount of time
+
+estimate_reading_time("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque fringilla bibendum nunc, nec convallis nisl faucibus non. Aliquam blandit ante ut rhoncus iaculis. Nulla molestie ligula nec elementum pretium. Praesent eget felis ex. Sed auctor congue odio, in dapibus nisi tincidunt eu. Quisque et nulla libero. Morbi eget nisi at.") => "About 1 minute"
+estimate_reading_time("") => throws an error "No text was provided"
+estimate_reading_time(nil) => throws an error "No text was provided"
 ```
 
 _Encode each example as a test. You can add to the above list as you go._
