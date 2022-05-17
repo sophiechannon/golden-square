@@ -14,6 +14,21 @@ RSpec.describe StringBuilder do
     end
   end
 
+  context "given multiple strings" do
+    it "adds and concatenates a string and returns it" do
+      string = StringBuilder.new
+      string.add("yo")
+      string.add(" Sophie")
+      expect(string.output).to eq "yo Sophie"
+    end
+    it "returns the length of a string" do
+      string = StringBuilder.new
+      string.add("yo")
+      string.add(" Sophie")
+      expect(string.size).to eq 9
+    end
+  end
+
   context "not given a string" do
     it "returns an empty string" do
       string = StringBuilder.new
@@ -26,4 +41,3 @@ RSpec.describe StringBuilder do
   end
 
 end
-
