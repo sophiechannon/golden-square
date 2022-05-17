@@ -1,9 +1,5 @@
 require "present"
 
-# if present is wrapped the unwrapped, then it returns the contents (passes)
-# if present is unwrapped before it's wrapped then it throws error
-# if present is wrapped twice in a row it throws an error
-
 RSpec.describe Present do
   it "returns the contents" do
     present = Present.new
