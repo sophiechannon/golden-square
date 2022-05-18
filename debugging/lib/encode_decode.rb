@@ -14,7 +14,7 @@ def decode(ciphertext, key)
   p cipher
   plaintext_chars = ciphertext.chars.map do |char|
     cipher[char.ord - 65] 
-    # was returning nil because this created a -venumber when it was 65 - char.ord. Needed reversing.
+    # was counting backwards through the array because this created a -venumber when it was 65 - char.ord. Needed reversing.
   end
   return plaintext_chars.join
 end
