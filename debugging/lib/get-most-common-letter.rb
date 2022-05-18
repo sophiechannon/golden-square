@@ -22,9 +22,9 @@ puts get_most_common_letter("the roof, the roof, the roof is on fire!")
 =begin
 
 def get_most_common_letter(text)
-  text = text.chars.select {|char| ("A".."z").any?(char)}.join
+  text = text.chars.select {|char| ("A".."z").any?(char)}
   counter = Hash.new(0)
-  text.chars.each do |char|
+  text.each do |char|
     counter[char] += 1
   end
   p counter.to_a.sort_by { |k, v| v }.reverse[0][0]
