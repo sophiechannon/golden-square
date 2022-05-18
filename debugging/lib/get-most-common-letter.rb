@@ -1,10 +1,10 @@
 def get_most_common_letter(text)
-  # added this line to remove non letter characters
-  text = text.chars.select {|char| ("A".."z").any?(char)}.join
+  # added this line to remove non letter characters. Creates an array.
+  text = text.chars.select {|char| ("A".."z").any?(char)}
   p text # check it has worked as planned
   counter = Hash.new(0)
   p "counter is empty #{counter}"
-  text.chars.each do |char|
+  text.each do |char| # deleted .chars as we have already turned it into an array on line 3
     counter[char] += 1
   end
   p counter.to_a.sort_by { |k, v| v } # it is sorting, but the reverse order to what we want
