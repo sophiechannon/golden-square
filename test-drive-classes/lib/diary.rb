@@ -6,19 +6,34 @@ class DiaryEntry
   end
 
   def title
-    @title
+    if @title == ""
+      fail "Enter Title"
+    else
+      @title
+    end
   end
 
   def contents
-    @contents
+    if @contents == ""
+      fail "Enter Content"
+    else
+      @contents
+    end
   end
 
   def count_words
     @contents.split(" ").length
   end
 
+
   def reading_time(wpm)
-    (count_words.to_f / wpm).ceil
+    if wpm == 0
+      fail "Enter a bigger number"
+    else
+      (count_words.to_f / wpm).ceil
+  
+    end
+  
   end
 
   def reading_chunk(wpm, minutes)
@@ -27,11 +42,13 @@ class DiaryEntry
     end_at = @words_read + amount_we_can_read
 
     words_to_show = @contents.split(" ")[start_at...end_at]
-    if words.length == @words_read + amount_we_can_read
+    if words.length == @words_read + words_to_show.length
       @words_read = 0
     else
       @words_read = amount_we_can_read
-    end
+    end 
+     
+
 
     words_to_show.join(" ")
   end
@@ -46,7 +63,7 @@ class DiaryEntry
 end
 
 
-# diary_entry = DiaryEntry.new("Sophie's Diary", "a b c d e f g h i j")
+# diary_entry = DiaryEntry.new("Sophie's Diary", "a b c d e f g h ")
 # diary_entry.reading_chunk(5, 1)
 # diary_entry.reading_chunk(5, 1)
 # diary_entry.reading_chunk(5, 1)

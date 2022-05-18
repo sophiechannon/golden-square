@@ -4,13 +4,8 @@ RSpec.describe DiaryEntry do
   it "returns the title & contents" do
     diary_entry = DiaryEntry.new("Sophie's Diary", "My contents")
     expect(diary_entry.title).to eq "Sophie's Diary"
-    expect(diary_entry.contents).to eq "My contents"
   end
 
-  it "returns the wordcount of contents as int" do
-    diary_entry = DiaryEntry.new("Sophie's Diary", "My contents")
-    expect(diary_entry.count_words).to eq 2
-  end
 
   context "when given a number greated than 0 as wpm" do
     it "tells you how long it will take to read in minutes, rounded up" do
@@ -21,7 +16,8 @@ RSpec.describe DiaryEntry do
 
   context "when given 0 as wpm" do
     it "fails" do
-      # write a test for this
+      diary_entry = DiaryEntry.new("Sophie's Diary", "My contents")
+      expect {diary_entry.reading_time(0)}.to raise_error "Enter a bigger number" 
     end
   end
 
@@ -43,12 +39,21 @@ RSpec.describe DiaryEntry do
         expect(diary_entry.reading_chunk(5, 1)).to eq "f g h i j"
         expect(diary_entry.reading_chunk(5, 1)).to eq "a b c d e"
     end
-    it "works if word_count is divisible by wpm * minutes" do
+   
+    it "still works even if count is less than five" do
+      diary_entry = DiaryEntry.new("Sophie's Diary", "a b c d")
+      expect(diary_entry.reading_chunk(5, 1)).to eq "a b c d"
+      expect(diary_entry.reading_chunk(5, 1)).to eq "a b c d"
     end
   end
-
-  # think about different examples i.e. text already fits within time
-  # what if WPM is 0?
-
+  it "if content is empty raise error" do
+    diary_entry = DiaryEntry.new("Sophie's Diary", "")
+    expect{diary_entry.contents}.to raise_error "Enter Content"
+  end
+  it "if title is empty raise error" do
+    diary_entry = DiaryEntry.new("", "Hello")
+    expect{diary_entry.title}.to raise_error "Enter Title"
+  end
+  
 
 end
