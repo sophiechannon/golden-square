@@ -1,6 +1,6 @@
 def encode(plaintext, key)
   cipher = key.chars.uniq + (('a'..'z').to_a - key.chars)
-  # p ('a'...'z').to_a not going all the way to z 
+  # p ('a'...'z').to_a not going all the way to z and causing it to return nil if z
   p cipher
   ciphertext_chars = plaintext.chars.map do |char|
     (65 + cipher.find_index(char)).chr
@@ -10,6 +10,7 @@ end
 
 def decode(ciphertext, key)
   cipher = key.chars.uniq + (('a'..'z').to_a - key.chars)
+  # changed a..z to match encode
   p cipher
   plaintext_chars = ciphertext.chars.map do |char|
     cipher[char.ord - 65] 
