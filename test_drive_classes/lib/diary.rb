@@ -12,14 +12,12 @@ class DiaryEntry
 
   def contents
     fail "Enter Content" if @contents == ""
-      fail "Enter Content"
       @contents
   end
 
   def count_words
     words.length
   end
-
 
   def reading_time(wpm)
     fail "Enter a bigger number" if wpm == 0
@@ -34,7 +32,7 @@ class DiaryEntry
     if count_words == @words_read + words_to_show.length
       @words_read = 0
     else
-      @words_read = amount_we_can_read
+      @words_read = @words_read + amount_we_can_read
     end 
     words_to_show.join(" ")
   end
@@ -48,7 +46,9 @@ class DiaryEntry
 end
 
 
-# diary_entry = DiaryEntry.new("Sophie's Diary", "a b c d e f g h ")
-# diary_entry.reading_chunk(5, 1)
-# diary_entry.reading_chunk(5, 1)
-# diary_entry.reading_chunk(5, 1)
+# diary_entry = DiaryEntry.new("Sophie's Diary", "a b c d e f g h i j k l m n o p")
+# p diary_entry.reading_chunk(5, 1)
+# p diary_entry.reading_chunk(5, 1)
+# p diary_entry.reading_chunk(5, 1)
+# p diary_entry.reading_chunk(5, 1)
+# p diary_entry.reading_chunk(5, 1)

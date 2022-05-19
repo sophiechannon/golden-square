@@ -17,7 +17,7 @@ RSpec.describe DiaryEntry do
       diary_entry = DiaryEntry.new("Sophie's Diary", "My contents")
       expect {diary_entry.reading_time(0)}.to raise_error "Enter a bigger number" 
       expect {diary_entry.reading_chunk(0, 5)}.to raise_error "Enter a bigger number" 
-      expect {diary_entry.reading_chunk(0, 0)}.to raise_error "Enter a bigger number" 
+      expect {diary_entry.reading_chunk(5, 0)}.to raise_error "Enter a bigger number" 
     end
   end
 
@@ -30,10 +30,13 @@ RSpec.describe DiaryEntry do
 
   context "reading_chunks prints correct chunk" do
       it "loops back to beginning" do
-        diary_entry = DiaryEntry.new("Sophie's Diary", "a b c d e f g h")
+        diary_entry = DiaryEntry.new("Sophie's Diary", "a b c d e f g h i j k l m n o p")
         expect(diary_entry.reading_chunk(5, 1)).to eq "a b c d e"
-        expect(diary_entry.reading_chunk(5, 1)).to eq "f g h"
+        expect(diary_entry.reading_chunk(5, 1)).to eq "f g h i j"
+        expect(diary_entry.reading_chunk(5, 1)).to eq "k l m n o"
+        expect(diary_entry.reading_chunk(5, 1)).to eq "p"
         expect(diary_entry.reading_chunk(5, 1)).to eq "a b c d e"
+    
     end
    
     it "still works even if count is less than five" do
