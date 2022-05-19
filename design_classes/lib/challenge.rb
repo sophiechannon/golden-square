@@ -12,4 +12,8 @@ class MusicTracker
       @list_of_tracks << track
     end
   end
+
+  def display_list
+    @list_of_tracks.empty? ? "Playlist is empty" : @list_of_tracks
+  end
 end

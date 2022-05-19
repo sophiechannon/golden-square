@@ -2,11 +2,6 @@ require "challenge"
 
 RSpec.describe MusicTracker do
   describe "#add_track method" do
-    it "returns #list_of_tracks" do
-      tracks = MusicTracker.new
-      expect(tracks.add_track("Imagine")).to eq ["Imagine"]
-    end
-
     it "fails if string is empty" do
       tracks = MusicTracker.new
       expect { tracks.add_track("") }.to raise_error "Please enter a track"
@@ -19,5 +14,17 @@ RSpec.describe MusicTracker do
     end
   end
 
+  describe "#display_list method" do
+    it "displays the list of tracks" do
+      tracks = MusicTracker.new
+      tracks.add_track("You Suffer")
+      tracks.add_track("Imagine")
+      expect(tracks.display_list).to eq ["You Suffer", "Imagine"]
+    end
 
+    it "displays 'Playlist is empty' if no tracks on list" do
+      tracks = MusicTracker.new
+      expect(tracks.display_list).to eq "Playlist is empty"
+    end
+  end
 end

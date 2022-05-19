@@ -45,7 +45,8 @@ expect(tracks.add_track("Imagine")).to eq ["Imagine"]
 # 2 display_list
 tracks = MusicTracker.new
 tracks.add_track("You Suffer")
-expect(tracks.add_track("Imagine")).to eq ["You Suffer", "Imagine"]
+tracks.add_track("Imagine")
+expect(tracks.display_list).to eq ["You Suffer", "Imagine"]
 
 # return "Playlist is empty" if #list_of_tracks is empty 
 
