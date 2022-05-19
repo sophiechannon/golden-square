@@ -17,7 +17,7 @@ class DiaryEntry
   end
 
   def count_words
-    @contents.split(" ").length
+    words.length
   end
 
 
@@ -27,11 +27,11 @@ class DiaryEntry
   end
 
   def reading_chunk(wpm, minutes)
+    fail "Enter a bigger number" if wpm == 0 || minutes == 0
     amount_we_can_read = wpm * minutes
     start_at = @words_read
-    end_at = @words_read + amount_we_can_read
-    words_to_show = @contents.split(" ")[start_at...end_at]
-    if words.length == @words_read + words_to_show.length
+    words_to_show = words[start_at, amount_we_can_read]
+    if count_words == @words_read + words_to_show.length
       @words_read = 0
     else
       @words_read = amount_we_can_read

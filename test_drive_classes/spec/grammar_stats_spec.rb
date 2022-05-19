@@ -5,6 +5,7 @@ RSpec.describe GrammarStats do
     grammar_stats = GrammarStats.new
     expect { grammar_stats.check("")}.to raise_error "No text was provided!"
   end
+  
   describe "percentage_good method" do
     it "percentage_good method returns correct perccentage" do
       grammar_stats = GrammarStats.new
