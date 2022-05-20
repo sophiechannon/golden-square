@@ -46,7 +46,7 @@ RSpec.describe "integration" do
       expect(diary.find_best_entry_for_reading_time(200, 3)). to eq entry_2.contents
     end
 
-    it "raises error if wpm is 0" do
+    it "#best_entry_for_reading_time raises error if wpm is 0" do
       diary = Diary.new
       entry_1 = DiaryEntry.new("first entry", "today was nice" * 100) # 300 words
       diary.add(entry_1)
