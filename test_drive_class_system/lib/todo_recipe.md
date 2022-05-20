@@ -59,7 +59,7 @@ end
 
 ```
 
-## 3. Create Examples as Tests
+## 3. Integration test examples
 
 _Make a list of examples of how the class will behave in different situations._
 
@@ -96,8 +96,6 @@ todo_list.add(task_2)
 task_1.mark_done!
 expect(task_1.done?).to eq true
 
-# do we need an error for this one?
-
 # 4 give_up! moves all incomplete taks to complete
 
 todo_list = TodoList.new
@@ -109,7 +107,11 @@ todo_list.give_up!
 expect(todo_list.incomplete).to eq []
 expect(todo_list.complete).to eq [task_1, task_2]
 
-# TodoList Class
+```
+## 4. unit test examples
+
+```` ruby
+# TodoList class
 
 # 1 
 
@@ -126,12 +128,9 @@ task_1 = Todo.new("Wash hair") => task_1.task = "Wash hair"
 task_1 = Todo.new("") => raise error
 
 
-```
+````
 
-
-_Encode each example as a test. You can add to the above list as you go._
-
-## 4. Implement the Behaviour
+## 5. Implement the Behaviour
 
 _After each test you write, follow the test-driving process of red, green, refactor to implement the behaviour._
 
