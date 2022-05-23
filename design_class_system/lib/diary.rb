@@ -32,14 +32,9 @@ class Diary
   end
 
   def contacts
-    array = []
-    all.each do |entry|
-      array << entry.contents if entry.contents.include?("07")
+    all.flat_map do |entry|
+      entry.contents.scan(/[07][0-9]{10}/)
     end
-    array.map! do |entry|
-      entry.delete("^0123456789")
-    end
-    array
   end
 
 end
