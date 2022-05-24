@@ -18,9 +18,11 @@ class StringRepeater
     @terminal.puts "Hello. I will repeat a string many times.\nPlease enter a string"
     string = @terminal.gets.chomp
     @terminal.puts "Please enter a number of repeats"
-    number = @terminal.gets.chomp.to_i
+    number = @terminal.gets.to_i
     @terminal.puts "Here is your result:"
     @terminal.puts string * number
   end
-
 end
+
+string_repeater = StringRepeater.new(Kernel)
+string_repeater.run
