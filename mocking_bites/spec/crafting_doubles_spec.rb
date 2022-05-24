@@ -33,9 +33,7 @@ RSpec.describe "doubles" do
     fake_object = double :animal
     # Write an expectation below that the method "speak" is called with
     # the argument "Steve"
-    allow(fake_object).to receive(:speak).with("Steve").and_return("Yo! Steve!")
-    expect(fake_object.speak("Steve")).to eq "Yo! Steve!"
-    expect { fake_object.speak("Ron") }.to raise_error RSpec::Mocks::MockExpectationError
+    expect(fake_object).to receive(:speak).with("Steve")
     # Don't edit below
     fake_object.speak("Steve")
   end
