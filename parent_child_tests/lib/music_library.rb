@@ -1,3 +1,5 @@
+require "./track.rb"
+
 class MusicLibrary
   def initialize
     @tracks = []
@@ -15,3 +17,6 @@ class MusicLibrary
     @tracks.select { |track| track if track.matches?(keyword) }
   end
 end
+
+track1 = Track.new("hello", "123")
+puts track1.matches?("hello")
