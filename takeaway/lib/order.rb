@@ -21,6 +21,10 @@ class Order
     @basket
   end
 
+  def customer
+    @customer
+  end
+
   def remove(dish, qty)
     fail "Item not in basket" if basket.all? { |h| h[:dish] != dish }
     basket.each do |item|

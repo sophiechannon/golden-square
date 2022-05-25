@@ -199,10 +199,24 @@ RSpec.describe "integration" do
     order.add(dish_1, 2)
     order.add(dish_2, 1)
     receipt = Receipt.new(terminal, order)
-    expect(terminal).to receive(:puts)
-    .with("Receipt\nCh*cken burger (£12) x 2\nLoaded frieds (£6) x 1")
-    expect(terminal).to receive(:puts)
-    .with("Grand total: £30")
+    expect(terminal).to receive(:puts).with("---Receipt---")
+    expect(terminal).to receive(:puts).with("Customer: Sophie")
+    expect(terminal).to receive(:puts).with("Ch*cken burger (£12) x 2")
+    expect(terminal).to receive(:puts).with("Loaded fries (£6) x 1")
+    expect(terminal).to receive(:puts).with("Grand total: £30")
+    receipt.itemised_bill_formatted
+  end
+
+  it "Receipt takes order and putses it in a nice format even if it's 0" do
+    terminal = double :terminal
+    customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
+    menu = Menu.new(terminal)
+    order = Order.new(customer, menu)
+    receipt = Receipt.new(terminal, order)
+    expect(terminal).to receive(:puts).with("---Receipt---")
+    expect(terminal).to receive(:puts).with("Customer: Sophie")
+    expect(terminal).to receive(:puts).with("Nothing ordered!")
+    expect(terminal).to receive(:puts).with("Grand total: £0")
     receipt.itemised_bill_formatted
   end
 
