@@ -41,7 +41,7 @@ class Menu
   end
 
   def all
-  # returns the dishes array
+    return @dishes
   end
 
   def view_all
