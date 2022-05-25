@@ -28,10 +28,10 @@ class Order
   def remove(dish, qty)
     fail "Item not in basket" if basket.all? { |h| h[:dish] != dish }
     basket.each do |item|
-      item[:qty] -= qty  if item[:dish] == dish
+      item[:qty] -= qty if item[:dish] == dish # reduces the quantity in the basket
     end
-    dish.quantity += qty
-    basket.delete_if {|h| h[:qty] < 1}
+    dish.quantity += qty # adds the quantity back to the Dish object
+    basket.delete_if {|h| h[:qty] < 1} # if the quantity of the item in the basket is now 0, remove it
   end
 
   def cancel

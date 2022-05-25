@@ -38,6 +38,4 @@ class Menu
   def print_out_of_stock_message
     @terminal.puts "Restaurant out of stock!"
   end
-
-
 end

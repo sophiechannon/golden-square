@@ -18,7 +18,7 @@ RSpec.describe "integration" do
     expect(menu.all).to eq [dish_1, dish_2, dish_3]
   end
 
-  it "adds dishes to the menu and are puts out in a nice format" do
+  it "adds dishes to the menu and puts out in a nice format" do
     terminal = double :terminal
     menu = Menu.new(terminal)
     dish_1 = Dish.new("Ch*cken burger", 12, 20)
@@ -83,7 +83,7 @@ RSpec.describe "integration" do
     customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
     menu = Menu.new(terminal)
     dish_1 = Dish.new("Ch*cken burger", 12, 5)
-    dish_2 = Dish.new("Loaded fries", 6, 5) # create dish, but don't add it to menu
+    dish_2 = Dish.new("Loaded fries", 6, 5)
     menu.add(dish_1)
     order = Order.new(customer, menu)
     expect { order.add(dish_2, 1) }.to raise_error "Dish not currently available"
@@ -124,8 +124,8 @@ RSpec.describe "integration" do
     order = Order.new(customer, menu)
     order.add(dish_1, 2)
     order.add(dish_2, 1)
-    order.remove(dish_1, 1)
-    order.remove(dish_2, 1)
+    order.remove(dish_1, 1) # should still have one
+    order.remove(dish_2, 1) # should dissapear completely
     expect(order.basket).to eq [{dish: dish_1, qty: 1}]
     expect(dish_1.quantity).to eq 4
     expect(dish_2.quantity).to eq 5
@@ -148,15 +148,11 @@ RSpec.describe "integration" do
     expect(dish_2.quantity).to eq 5
   end
 
-  # Possible edge cases...
-
-  it "fails when removal is attempted on a dish that's not in the basket" do
+  it "fails when removal is attempted on a dish that's not in the basket/basket is empty" do
     terminal = double :terminal
     customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
     menu = Menu.new(terminal)
-    dish_1 = Dish.new("Ch*cken burger", 12, 5)
     dish_2 = Dish.new("Loaded fries", 6, 5)
-    menu.add(dish_1)
     menu.add(dish_2)
     order = Order.new(customer, menu)
     expect { order.remove(dish_2, 1) }.to raise_error "Item not in basket"
@@ -177,7 +173,7 @@ RSpec.describe "integration" do
     expect(order.basket).to eq [{dish: dish_1, qty: 2}]
   end
 
-  it "does break if order is cancelled before anything is added" do
+  it "doesn't break if order is cancelled before anything is added" do
     terminal = double :terminal
     customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
     menu = Menu.new(terminal)
@@ -207,7 +203,7 @@ RSpec.describe "integration" do
     receipt.itemised_bill_formatted
   end
 
-  it "Receipt takes order and putses it in a nice format even if it's 0" do
+  it "Receipt takes order and putses it in a nice format even if order is empty" do
     terminal = double :terminal
     customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
     menu = Menu.new(terminal)
