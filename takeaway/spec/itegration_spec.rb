@@ -18,7 +18,8 @@ RSpec.describe "integration" do
     expect(menu.all).to eq [dish_1, dish_2, dish_3]
   end
 
-  xit "adds dishes to the menu and are puts out in a nice format" do
+  it "adds dishes to the menu and are puts out in a nice format" do
+    terminal = double :terminal
     menu = Menu.new(terminal)
     dish_1 = Dish.new("Ch*cken burger", 12, 20)
     dish_2 = Dish.new("Loaded fries", 6, 50)
@@ -26,12 +27,15 @@ RSpec.describe "integration" do
     menu.add(dish_1)
     menu.add(dish_2)
     menu.add(dish_3)
-    expect(terminal).to receive(:puts)
-    .with("Ch*cken burger - £12\nLoaded frieds - £6\nChocolate m*lkshake - £4")
+    expect(terminal).to receive(:puts).with("---Menu---")
+    expect(terminal).to receive(:puts).with("Ch*cken burger (£12)")
+    expect(terminal).to receive(:puts).with("Loaded fries (£6)")
+    expect(terminal).to receive(:puts).with("Chocolate m*lkshake (£4)")
     menu.view_all
   end
 
-  xit "doesn't puts dish to console if it is out of stock" do
+  it "doesn't puts dish to console if it is out of stock" do
+    terminal = double :terminal
     menu = Menu.new(terminal)
     dish_1 = Dish.new("Ch*cken burger", 12, 0)
     dish_2 = Dish.new("Loaded fries", 6, 50)
@@ -39,12 +43,14 @@ RSpec.describe "integration" do
     menu.add(dish_1)
     menu.add(dish_2)
     menu.add(dish_3)
-    expect(terminal).to receive(:puts)
-    .with("Loaded frieds - £6\nChocolate m*lkshake - £4")
+    expect(terminal).to receive(:puts).with("---Menu---")
+    expect(terminal).to receive(:puts).with("Loaded fries (£6)")
+    expect(terminal).to receive(:puts).with("Chocolate m*lkshake (£4)")
     menu.view_all
   end
 
-  xit "returns an error if all dishes are out of stock" do
+  it "returns an error if all dishes are out of stock" do
+    terminal = double :terminal
     menu = Menu.new(terminal)
     dish_1 = Dish.new("Ch*cken burger", 12, 0)
     dish_2 = Dish.new("Loaded fries", 6, 0)
@@ -52,12 +58,12 @@ RSpec.describe "integration" do
     menu.add(dish_1)
     menu.add(dish_2)
     menu.add(dish_3)
-    expect(menu).to receive(:puts)
-    .with("Restaurant out of stock!")
+    expect(terminal).to receive(:puts).with("Restaurant out of stock!")
     menu.view_all
   end
 
-  xit "adds an dish to the Order basket" do
+  it "adds an dish to the Order basket" do
+    terminal = double :terminal
     customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
     menu = Menu.new(terminal)
     dish_1 = Dish.new("Ch*cken burger", 12, 5)
