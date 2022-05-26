@@ -30,7 +30,7 @@ class Receipt
 
   def print_bill
     if @new_order.basket.empty?
-      @terminal.puts "Nothing new_ordered!"
+      @terminal.puts "Nothing ordered!"
     else
       @new_order.basket.each do |item|
         @terminal.puts "#{item[:dish].name} (£#{item[:dish].price}) x #{item[:qty]}"
@@ -47,15 +47,15 @@ class Receipt
   end
 end
 
-customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
-menu = Menu.new(Kernel)
-dish_1 = Dish.new("spoonr", 12, 5)
-dish_2 = Dish.new("Loaded fries", 6, 5)
-menu.add(dish_1)
-menu.add(dish_2)
-new_order = Order.new(customer, menu)
-new_order.add(dish_1, 2)
-new_order.add(dish_2, 1)
-new_order.confirm
-receipt = Receipt.new(Kernel, new_order)
-receipt.itemised_bill_formatted
+# customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
+# menu = Menu.new(Kernel)
+# dish_1 = Dish.new("spoonr", 12, 5)
+# dish_2 = Dish.new("Loaded fries", 6, 5)
+# menu.add(dish_1)
+# menu.add(dish_2)
+# new_order = Order.new(customer, menu)
+# new_order.add(dish_1, 2)
+# new_order.add(dish_2, 1)
+# new_order.confirm
+# receipt = Receipt.new(Kernel, new_order)
+# receipt.itemised_bill_formatted

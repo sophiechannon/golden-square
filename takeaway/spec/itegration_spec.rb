@@ -216,7 +216,7 @@ RSpec.describe "integration" do
     receipt.itemised_bill_formatted
   end
 
-  xit "sends a confirmation text when the order is confirmed" do
+  it "sends a confirmation text when the order is confirmed" do
     terminal = double :terminal
     customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
     menu = Menu.new(terminal)
@@ -227,10 +227,6 @@ RSpec.describe "integration" do
     order = Order.new(customer, menu)
     order.add(dish_1, 2)
     order.add(dish_2, 1)
-    text = ConfirmationText.new(customer, terminal)
-    expect(text.requester).to receive(:gets).with("https://api.twilio.com/2010-04-01/Accounts/ACee81d43509a2a51b841d04f24296df35/Messages.json")
-    .and_return('{"sid": "SM2767b0752e8e408f8a77efcd1fc2c4a3", "date_created": "Thu, 26 May 2022 11:34:19 +0000", "date_updated": "Thu, 26 May 2022 11:34:19 +0000", "date_sent": null, "account_sid": "ACee81d43509a2a51b841d04f24296df35", "to": "+447557942369", "from": null, "messaging_service_sid": "MGc693f037b4cd513443a7e1e7c04e34da", "body": "testing123", "status": "accepted", "num_segments": "0", "num_media": "0", "direction": "outbound-api", "api_version": "2010-04-01", "price": null, "price_unit": null, "error_code": null, "error_message": null, "uri": "/2010-04-01/Accounts/ACee81d43509a2a51b841d04f24296df35/Messages/SM2767b0752e8e408f8a77efcd1fc2c4a3.json", "subresource_uris": {"media": "/2010-04-01/Accounts/ACee81d43509a2a51b841d04f24296df35/Messages/SM2767b0752e8e408f8a77efcd1fc2c4a3/Media.json"}}')
-    expect(terminal).to receive(:puts).with("SM2767b0752e8e408f8a77efcd1fc2c4a3")
-    order.confirm  
+    expect(order.confirm).to eq "Confirmation text sent to customer"
   end
 end

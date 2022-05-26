@@ -45,8 +45,9 @@ class Order
   end
 
   def confirm
-    text = ConfirmationText.new(@customer, Kernel)
+    text = ConfirmationText.new(@customer)
     text.send
+    return "Confirmation text sent to customer"
   end
 
   private
@@ -55,13 +56,13 @@ class Order
   end
 end
 
-customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
-menu = Menu.new(Kernel)
-dish_1 = Dish.new("cake", 12, 5)
-dish_2 = Dish.new("Loaded fries", 6, 5)
-menu.add(dish_1)
-menu.add(dish_2)
-order = Order.new(customer, menu)
-order.add(dish_1, 2)
-order.add(dish_2, 1)
-order.confirm
+# customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
+# menu = Menu.new(Kernel)
+# dish_1 = Dish.new("cake", 12, 5)
+# dish_2 = Dish.new("Loaded fries", 6, 5)
+# menu.add(dish_1)
+# menu.add(dish_2)
+# order = Order.new(customer, menu)
+# order.add(dish_1, 2)
+# order.add(dish_2, 1)
+# order.confirm
