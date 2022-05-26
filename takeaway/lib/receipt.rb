@@ -52,7 +52,7 @@ class Receipt
   end
 end
 
-# new_customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
+# new_customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
 # new_menu = Menu.new(Kernel)
 # dish_1 = Dish.new("Burger", 12, 5)
 # dish_2 = Dish.new("Loaded fries", 6, 5)

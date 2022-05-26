@@ -64,7 +64,7 @@ RSpec.describe "integration" do
 
   it "adds an dish to the Order basket" do
     terminal = double :terminal
-    customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
+    customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
     menu = Menu.new(terminal)
     dish_1 = Dish.new("Ch*cken burger", 12, 5)
     dish_2 = Dish.new("Loaded fries", 6, 5)
@@ -80,7 +80,7 @@ RSpec.describe "integration" do
 
   it "can't add item to Order basket if it's not added to the menu" do
     terminal = double :terminal
-    customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
+    customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
     menu = Menu.new(terminal)
     dish_1 = Dish.new("Ch*cken burger", 12, 5)
     dish_2 = Dish.new("Loaded fries", 6, 5)
@@ -91,7 +91,7 @@ RSpec.describe "integration" do
 
   it "can't add dish to Order basket if it's out of stock" do
     terminal = double :terminal
-    customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
+    customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
     menu = Menu.new(terminal)
     dish_1 = Dish.new("Ch*cken burger", 12, 5)
     dish_2 = Dish.new("Loaded fries", 6, 0) # out of stock
@@ -103,7 +103,7 @@ RSpec.describe "integration" do
 
   it "raises error if customer tries to add too many of an item" do
     terminal = double :terminal
-    customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
+    customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
     menu = Menu.new(terminal)
     dish_1 = Dish.new("Ch*cken burger", 12, 5)
     dish_2 = Dish.new("Loaded fries", 6, 5) # out of stock
@@ -115,7 +115,7 @@ RSpec.describe "integration" do
 
   it "Removes a quantity of dishes from the order basket" do
     terminal = double :terminal
-    customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
+    customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
     menu = Menu.new(terminal)
     dish_1 = Dish.new("Ch*cken burger", 12, 5)
     dish_2 = Dish.new("Loaded fries", 6, 5)
@@ -133,7 +133,7 @@ RSpec.describe "integration" do
 
   it "empties basket and resets quantities" do
     terminal = double :terminal
-    customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
+    customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
     menu = Menu.new(terminal)
     dish_1 = Dish.new("Ch*cken burger", 12, 5)
     dish_2 = Dish.new("Loaded fries", 6, 5)
@@ -150,7 +150,7 @@ RSpec.describe "integration" do
 
   it "fails when removal is attempted on a dish that's not in the basket/basket is empty" do
     terminal = double :terminal
-    customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
+    customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
     menu = Menu.new(terminal)
     dish_2 = Dish.new("Loaded fries", 6, 5)
     menu.add(dish_2)
@@ -160,7 +160,7 @@ RSpec.describe "integration" do
 
   it "automatically removes item from order if quantity to removes is greater than quantity in basket" do
     terminal = double :terminal
-    customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
+    customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
     menu = Menu.new(terminal)
     dish_1 = Dish.new("Ch*cken burger", 12, 5)
     dish_2 = Dish.new("Loaded fries", 6, 5)
@@ -175,7 +175,7 @@ RSpec.describe "integration" do
 
   it "doesn't break if order is cancelled before anything is added" do
     terminal = double :terminal
-    customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
+    customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
     menu = Menu.new(terminal)
     dish_1 = Dish.new("Ch*cken burger", 12, 5)
     order = Order.new(customer, menu,)
@@ -187,7 +187,7 @@ RSpec.describe "integration" do
     terminal = double :terminal
     dish_1 = Dish.new("Ch*cken burger", 12, 5)
     dish_2 = Dish.new("Loaded fries", 6, 5)
-    customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
+    customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
     menu = Menu.new(terminal)
     menu.add(dish_1)
     menu.add(dish_2)
@@ -205,7 +205,7 @@ RSpec.describe "integration" do
 
   it "Receipt takes order and putses it in a nice format even if order is empty" do
     terminal = double :terminal
-    customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
+    customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
     menu = Menu.new(terminal)
     order = Order.new(customer, menu)
     receipt = Receipt.new(terminal, order)
@@ -218,7 +218,7 @@ RSpec.describe "integration" do
 
   it "sends a confirmation text when the order is confirmed" do
     terminal = double :terminal
-    customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
+    customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
     menu = Menu.new(terminal)
     dish_1 = Dish.new("Ch*cken burger", 12, 5)
     dish_2 = Dish.new("Loaded fries", 6, 5)

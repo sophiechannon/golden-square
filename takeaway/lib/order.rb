@@ -55,7 +55,7 @@ class Order
   end
 end
 
-# customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
+# customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
 # menu = Menu.new(Kernel)
 # dish_1 = Dish.new("cake", 12, 5)
 # dish_2 = Dish.new("Loaded fries", 6, 5)
