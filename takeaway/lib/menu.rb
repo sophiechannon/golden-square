@@ -1,3 +1,6 @@
+$LOAD_PATH << File.dirname(__FILE__)
+require "dish.rb"
+
 class Menu
   def initialize(terminal) # Initializes with kernal for putsing
     @terminal = terminal
