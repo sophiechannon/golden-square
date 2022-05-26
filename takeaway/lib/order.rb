@@ -3,7 +3,6 @@ require "dish.rb"
 require "customer.rb"
 require "menu.rb"
 require "confirmation_text.rb"
-require "receipt.rb"
 
 class Order
   def initialize(customer, menu) # takes a Customer and Menu object

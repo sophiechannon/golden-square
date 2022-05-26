@@ -1,14 +1,15 @@
 $LOAD_PATH << File.dirname(__FILE__)
+require "order.rb"
 require "dish.rb"
 require "customer.rb"
 require "menu.rb"
 require "confirmation_text.rb"
-require "order.rb"
+
 
 class Receipt
-  def initialize(terminal, new_order) # takes an new_order object
+  def initialize(terminal, order) # takes an order object
     @terminal = terminal
-    @new_order = new_order
+    @order = order
   end
 
   def itemised_bill_formatted
@@ -18,10 +19,14 @@ class Receipt
     print_grand_total
   end
 
+  def order
+    @order
+  end
+
   private
 
   def grand_total
-    @new_order.basket.map { |item| item[:dish].price * item[:qty] }.sum
+    order.basket.map { |item| item[:dish].price * item[:qty] }.sum
   end
 
   def print_grand_total
@@ -29,17 +34,17 @@ class Receipt
   end
 
   def print_bill
-    if @new_order.basket.empty?
+    if order.basket.empty?
       @terminal.puts "Nothing ordered!"
     else
-      @new_order.basket.each do |item|
+      order.basket.each do |item|
         @terminal.puts "#{item[:dish].name} (£#{item[:dish].price}) x #{item[:qty]}"
       end
     end
   end
 
   def print_customer
-    @terminal.puts "Customer: #{@new_order.customer.name}"
+    @terminal.puts "Customer: #{order.customer.name}"
   end
 
   def print_receipt_header
@@ -47,13 +52,14 @@ class Receipt
   end
 end
 
-# customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
-# menu = Menu.new(Kernel)
-# dish_1 = Dish.new("spoonr", 12, 5)
+# new_customer = Customer.new("Sophie", "Waterbeach", "+447557942369")
+# new_menu = Menu.new(Kernel)
+# dish_1 = Dish.new("Burger", 12, 5)
 # dish_2 = Dish.new("Loaded fries", 6, 5)
-# menu.add(dish_1)
-# menu.add(dish_2)
-# new_order = Order.new(customer, menu)
+# new_menu.add(dish_1)
+# new_menu.add(dish_2)
+# new_order = Order.new(new_customer, new_menu)
+# new_order.customer
 # new_order.add(dish_1, 2)
 # new_order.add(dish_2, 1)
 # new_order.confirm

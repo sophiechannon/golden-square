@@ -42,3 +42,12 @@ class Menu
     @terminal.puts "Restaurant out of stock!"
   end
 end
+
+# menu = Menu.new(Kernel)
+# dish_1 = Dish.new("Ch*cken burger", 12, 5)
+# dish_2 = Dish.new("Loaded fries", 6, 6)
+# dish_3 = Dish.new("Chocolate m*lkshake", 4, 7)
+# menu.add(dish_1)
+# menu.add(dish_2)
+# menu.add(dish_3)
+# menu.view_all
