@@ -6,15 +6,13 @@ $LOAD_PATH << File.dirname(__FILE__)
 require "api_config.rb"
 
 class ConfirmationText
-  def initialize(customer, requester)
-    # @account_sid = ENV['TWILIO_ACCOUNT_SID']
-    # @auth_token = ENV['TWILIO_AUTH_TOKEN']
-    @requester = requester
+  def initialize(customer, api)
+    @api = api
     @customer = customer
   end
 
-  def requester
-    @requester
+  def client
+    @api.client
   end
 
   def customer
@@ -22,7 +20,7 @@ class ConfirmationText
   end
   
   def send
-    message = requester.messages.create( 
+    message = client.messages.create( 
                               body: message_body,
                               messaging_service_sid: 'MGc693f037b4cd513443a7e1e7c04e34da',     
                               to: customer.mobile_number 
