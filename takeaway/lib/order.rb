@@ -1,9 +1,12 @@
+require "rubygems"
+require "twilio-ruby"
 $LOAD_PATH << File.dirname(__FILE__)
-require "dish.rb"
 require "customer.rb"
 require "menu.rb"
-require "confirmation_text.rb"
+require "dish.rb"
 require "api_config.rb"
+require "confirmation_text.rb"
+require "receipt.rb"
 
 class Order
   def initialize(customer, menu, text) # takes a Customer and Menu object
@@ -68,13 +71,19 @@ class Order
   end
 end
 
+
 # customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
 # menu = Menu.new(Kernel)
 # dish_1 = Dish.new("cake", 12, 5)
 # dish_2 = Dish.new("Loaded fries", 6, 5)
 # menu.add(dish_1)
 # menu.add(dish_2)
-# order = Order.new(customer, menu)
+# api = ApiConfig.new
+# text = ConfirmationText.new(customer, api)
+# order = Order.new(customer, menu, text)
 # order.add(dish_1, 2)
 # order.add(dish_2, 1)
-# order.confirm
+# # order.confirm
+# binding.irb
+# bill = Receipt.new(Kernel, order)
+# bill.itemised_bill_formatted

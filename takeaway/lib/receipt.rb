@@ -4,6 +4,9 @@ require "dish.rb"
 require "customer.rb"
 require "menu.rb"
 require "confirmation_text.rb"
+require "api_config.rb"
+require "rubygems"
+require "twilio-ruby"
 
 
 class Receipt
@@ -52,16 +55,17 @@ class Receipt
   end
 end
 
-# new_customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
-# new_menu = Menu.new(Kernel)
-# dish_1 = Dish.new("Burger", 12, 5)
+# customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
+# menu = Menu.new(Kernel)
+# dish_1 = Dish.new("cake", 12, 5)
 # dish_2 = Dish.new("Loaded fries", 6, 5)
-# new_menu.add(dish_1)
-# new_menu.add(dish_2)
-# new_order = Order.new(new_customer, new_menu)
-# new_order.customer
-# new_order.add(dish_1, 2)
-# new_order.add(dish_2, 1)
-# new_order.confirm
-# receipt = Receipt.new(Kernel, new_order)
-# receipt.itemised_bill_formatted
+# menu.add(dish_1)
+# menu.add(dish_2)
+# api = ApiConfig.new
+# text = ConfirmationText.new(customer, api)
+# order = Order.new(customer, menu, text)
+# order.add(dish_1, 2)
+# order.add(dish_2, 1)
+# # order.confirm
+# bill = Receipt.new(Kernel, order)
+# bill.itemised_bill_formatted
