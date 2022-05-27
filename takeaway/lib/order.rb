@@ -3,6 +3,7 @@ require "dish.rb"
 require "customer.rb"
 require "menu.rb"
 require "confirmation_text.rb"
+require "api_config.rb"
 
 class Order
   def initialize(customer, menu) # takes a Customer and Menu object
@@ -44,7 +45,8 @@ class Order
   end
 
   def confirm
-    text = ConfirmationText.new(@customer)
+    api = ApiConfig.new
+    text = ConfirmationText.new(@customer, api.client)
     text.send
     return "Confirmation text sent to customer"
   end

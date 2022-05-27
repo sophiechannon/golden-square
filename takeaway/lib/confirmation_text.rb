@@ -2,12 +2,14 @@ require "rubygems"
 require "twilio-ruby"
 require "date"
 require "json"
+$LOAD_PATH << File.dirname(__FILE__)
+require "api_config.rb"
 
 class ConfirmationText
-  def initialize(customer)
-    @account_sid = ENV['TWILIO_ACCOUNT_SID']
-    @auth_token = ENV['TWILIO_AUTH_TOKEN']
-    @requester = Twilio::REST::Client.new(@account_sid, @auth_token)
+  def initialize(customer, requester)
+    # @account_sid = ENV['TWILIO_ACCOUNT_SID']
+    # @auth_token = ENV['TWILIO_AUTH_TOKEN']
+    @requester = requester
     @customer = customer
   end
 
