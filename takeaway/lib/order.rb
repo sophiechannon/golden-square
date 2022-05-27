@@ -1,5 +1,3 @@
-require "rubygems"
-require "twilio-ruby"
 require_relative "customer.rb"
 require_relative "menu.rb"
 require_relative "dish.rb"
@@ -65,23 +63,26 @@ class Order
   end
 
   private
+
   def dish_not_available
     "Dish not currently available"
   end
 end
 
-
 customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
 menu = Menu.new(Kernel)
-dish_1 = Dish.new("cake", 12, 5)
+dish_1 = Dish.new("Burger", 12, 5)
 dish_2 = Dish.new("Loaded fries", 6, 5)
+dish_3 = Dish.new("Coke", 1.25, 100)
 menu.add(dish_1)
 menu.add(dish_2)
+menu.add(dish_3)
 api = ApiConfig.new
 text = ConfirmationText.new(customer, api)
-order = Order.new(customer, menu, text)
-order.add(dish_1, 2)
-order.add(dish_2, 1)
-# order.confirm
-bill = Receipt.new(Kernel, order)
-bill.itemised_bill_formatted
+new_order = Order.new(customer, menu, text)
+new_order.add(dish_1, 2)
+new_order.add(dish_2, 5)
+new_order.add(dish_3, 4)
+new_order.remove(dish_2, 4)
+receipt = Receipt.new(Kernel, new_order)
+receipt.itemised_bill_formatted

@@ -1,9 +1,6 @@
 require "rubygems"
 require "twilio-ruby"
 require "date"
-require "json"
-$LOAD_PATH << File.dirname(__FILE__)
-require "api_config.rb"
 
 class ConfirmationText
   def initialize(customer, api)

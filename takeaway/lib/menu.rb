@@ -1,5 +1,3 @@
-require_relative "dish.rb"
-
 class Menu
   def initialize(terminal) # Initializes with kernal for putsing
     @terminal = terminal
