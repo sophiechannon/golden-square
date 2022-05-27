@@ -1,12 +1,9 @@
-$LOAD_PATH << File.dirname(__FILE__)
-require "order.rb"
-require "dish.rb"
-require "customer.rb"
-require "menu.rb"
-require "confirmation_text.rb"
-require "api_config.rb"
-require "rubygems"
-require "twilio-ruby"
+require_relative "order.rb"
+require_relative "dish.rb"
+require_relative "customer.rb"
+require_relative "menu.rb"
+require_relative "confirmation_text.rb"
+require_relative "api_config.rb"
 
 
 class Receipt
@@ -55,17 +52,17 @@ class Receipt
   end
 end
 
-customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
-menu = Menu.new(Kernel)
-dish_1 = Dish.new("cake", 12, 5)
-dish_2 = Dish.new("Loaded fries", 6, 5)
-menu.add(dish_1)
-menu.add(dish_2)
-api = ApiConfig.new
-text = ConfirmationText.new(customer, api)
-order = Order.new(customer, menu, text)
-order.add(dish_1, 2)
-order.add(dish_2, 1)
-# order.confirm
-bill = Receipt.new(Kernel, order)
-bill.itemised_bill_formatted
+# # customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
+# # menu = Menu.new(Kernel)
+# # dish_1 = Dish.new("cake", 12, 5)
+# # dish_2 = Dish.new("Loaded fries", 6, 5)
+# # menu.add(dish_1)
+# # menu.add(dish_2)
+# # api = ApiConfig.new
+# # text = ConfirmationText.new(customer, api)
+# # order = Order.new(customer, menu, text)
+# # order.add(dish_1, 2)
+# # order.add(dish_2, 1)
+# # # order.confirm
+# bill = Receipt.new(Kernel, order)
+# bill.itemised_bill_formatted
