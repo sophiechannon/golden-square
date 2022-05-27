@@ -55,17 +55,17 @@ class Receipt
   end
 end
 
-# customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
-# menu = Menu.new(Kernel)
-# dish_1 = Dish.new("cake", 12, 5)
-# dish_2 = Dish.new("Loaded fries", 6, 5)
-# menu.add(dish_1)
-# menu.add(dish_2)
-# api = ApiConfig.new
-# text = ConfirmationText.new(customer, api)
-# order = Order.new(customer, menu, text)
-# order.add(dish_1, 2)
-# order.add(dish_2, 1)
-# # order.confirm
-# bill = Receipt.new(Kernel, order)
-# bill.itemised_bill_formatted
+customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
+menu = Menu.new(Kernel)
+dish_1 = Dish.new("cake", 12, 5)
+dish_2 = Dish.new("Loaded fries", 6, 5)
+menu.add(dish_1)
+menu.add(dish_2)
+api = ApiConfig.new
+text = ConfirmationText.new(customer, api)
+order = Order.new(customer, menu, text)
+order.add(dish_1, 2)
+order.add(dish_2, 1)
+# order.confirm
+bill = Receipt.new(Kernel, order)
+bill.itemised_bill_formatted

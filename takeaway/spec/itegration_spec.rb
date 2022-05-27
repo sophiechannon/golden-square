@@ -245,7 +245,7 @@ RSpec.describe "integration" do
     receipt.itemised_bill_formatted
   end
 
-  it "sends a confirmation text when the order is confirmed" do
+  xit "sends a confirmation text when the order is confirmed" do
     terminal = double :terminal
     customer = Customer.new("Sophie", "Waterbeach", ENV['MY_NUMBER'])
     menu = Menu.new(terminal)
