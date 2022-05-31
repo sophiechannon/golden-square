@@ -9,16 +9,10 @@ class Game
     @ship_5 = ship_5
   end
 
+  attr_reader :rows, :cols
+
   def unplaced_ships
     [@ship_1, @ship_2, @ship_3, @ship_4, @ship_5]
-  end
-
-  def rows
-    @rows
-  end
-
-  def cols
-    @cols
   end
 
   def place_ship(move)
