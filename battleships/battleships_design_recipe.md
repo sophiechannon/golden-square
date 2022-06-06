@@ -68,15 +68,17 @@ _Make a list of examples of how the class will behave in different situations._
 
 ```ruby
 
-# suite of ships get added to unplaced ship array at the start of the game
+# suite of ships get added to unplaced ship array at the start of the game DONE
 
-# Game.ship at returns the coordinates of the Ship
+# Game.ship_at returns true if there is a ship present 
 
-# Game.place_ship updates the state of the correct ship's orientation, x axis and y axis
+# Game.place_ship updates the state of the correct ship's orientation, x axis and y axis DONE
 
-# Game.place_ship works if some ships have the same length
+# Game.place_ship works if some ships have the same length DONE
 
-# 
+# Game.place_ship updates spaces_occupied
+
+#Game.place_ship throws error if ship is placed in an invalid location
 
 
 ```
@@ -102,6 +104,8 @@ _Make a list of examples of how the class will behave in different situations._
     game = Game.new(10, 10, ship_1, ship_2, ship_3, ship_4, ship_5)
     expect(game.unplaced_ships).to eq [ship_1, ship_2, ship_3, ship_4, ship_5]
   end
+
+ 
 
 # Game.place_ship works if some ships have the same length
 

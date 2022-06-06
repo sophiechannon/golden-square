@@ -39,7 +39,6 @@ class UserInterface
     @game.place_ship(
       length: ship_length.to_i,
       orientation: {"v" => :vertical, "h" => :horizontal}.fetch(ship_orientation),
-      # this will return the value of v or h depending on what the user inputs
       row: ship_row.to_i,
       col: ship_col.to_i
     )
